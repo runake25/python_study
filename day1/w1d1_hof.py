@@ -30,4 +30,5 @@ if __name__ == "__main__":
     direct = normal_function(1)
 
     print(wrap, direct)
+
     assert wrap == direct == 2

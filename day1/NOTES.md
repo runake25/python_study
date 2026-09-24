@@ -1,3 +1,5 @@
-hof is just like closure in javascript, it wraps function inside another function for side effects. in pytho function are also objects so they can be call and pass with different cusotmization
+hof is a higher order funciton that takes or returns a function. 
 
-in here if we call the passed func instead of wrapper, then its just an empty function that skipped the side effect we intended.
+call at bind : wrapper(func) call at use : wrapper(func())
+
+closure is storing the state into another function, but high order function is not
