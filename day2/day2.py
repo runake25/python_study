@@ -27,4 +27,3 @@ def decodeRunes(runes):
 
 
 (decodeRunes("23"))
-filter

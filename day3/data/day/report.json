@@ -1,0 +1,26 @@
+{
+    "ok_count": 9,
+    "bad_row_count": 3,
+    "symbols": {
+        "AAPL": {
+            "count": 4,
+            "last_mid": "189.25",
+            "vwap": "189.2566666666666666666666667"
+        },
+        "MSFT": {
+            "count": 3,
+            "last_mid": "415.15",
+            "vwap": "415.1608"
+        },
+        "NVDA": {
+            "count": 1,
+            "last_mid": "875.10",
+            "vwap": "875.10"
+        },
+        "JPM": {
+            "count": 1,
+            "last_mid": "210.05",
+            "vwap": "210.05"
+        }
+    }
+}
