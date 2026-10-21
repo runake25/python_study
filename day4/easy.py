@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-import pandas
 from decimal import Decimal
 
 
@@ -99,6 +98,24 @@ class PositionLedger:
         """Returns the current position for a given symbol."""
         return self._positions.get(symbol, 0)
 
-    def realized_pnl(self, symbol: str) -> float:
+    def realized_pnl(self, symbol: str) -> Decimal:
         """Returns the realized PnL for a given symbol."""
-        return self._realized_pnl_total.get(symbol, 0.0)
+        return self._realized_pnl_total.get(symbol, Decimal("0.0"))
+
+
+if __name__ == "__main__":
+    ledger = PositionLedger()
+
+    # Example usage:
+    fill1 = Fill(
+        fill_id=1, symbol="AAPL", side=Side.BUY, qty=10, price=Decimal("150.00")
+    )
+    ledger.apply(fill1)
+
+    fill2 = Fill(
+        fill_id=2, symbol="AAPL", side=Side.SELL, qty=5, price=Decimal("155.00")
+    )
+    ledger.apply(fill2)
+
+    print(f"Position for AAPL: {ledger.get_position('AAPL')}")
+    print(f"Realized PnL for AAPL: {ledger.realized_pnl('AAPL')}")
