@@ -1,1 +1,0 @@
-HOF is a shape of the taken/ return callable, closure isa function that carries its enclosing scope with it after the scope has exited
