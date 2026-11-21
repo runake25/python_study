@@ -12,6 +12,8 @@ You lost the morning, so the order is NN2 first (it's the one with a deadline), 
 
 **Read first:** GUIDE.md §2 (feed source), §5 (fixed design choices: book, diffs, incremental hash, one choke point, self-check), §12 traps 1, 7, 14.
 
+**Learn from (tools):** [`hashlib` BLAKE2](https://docs.python.org/3/library/hashlib.html#blake2) for the 8-byte digest (`digest_size=8`), [`struct`](https://docs.python.org/3/library/struct.html) for packing a level, `random.Random(seed)` for the seeded generator.
+
 **Build:**
 - Integer prices (ticks) and integer quantities. **No floats.**
 - A book with two sides (bid, ask). One method, `set_level(side, price, qty)`, updates the stored level **and** the running hash together. `qty == 0` deletes the level. Nothing else writes level storage. No `await` inside it.
@@ -40,17 +42,18 @@ You lost the morning, so the order is NN2 first (it's the one with a deadline), 
 
 **Where:** `python_study/day1/`
 
-**a) LeetCode 217 Contains Duplicate** → `lc_217.py`. 30 min max, no hints. Top comment: time taken, and the time and space complexity of your solution. Then write a second version with a different trade-off (e.g. O(1) extra space) and state its cost.
+Use the loop from CURRICULUM.md: try first → one source → close it → rewrite from blank.
 
-**b) `@timer` decorator** → `timer.py` + `test_timer.py`. 30 min max.
-- Works on a function with any signature (positional, keyword, defaults).
-- Returns the wrapped function's result unchanged.
-- Keeps `__name__` and `__doc__` (`functools.wraps`).
-- Uses `time.perf_counter_ns()`, and reports the elapsed time even when the function raises (then re-raises the same exception).
-- Then a second form, `@timer(unit="ms")`, that accepts arguments. Reject an unknown unit with a clear `ValueError` at decoration time.
-- Tests: result passthrough, metadata kept, exception path still timed and re-raised, bad unit raises. Inject the clock or capture output so tests don't depend on real timing.
+**a) LeetCode 49 Group Anagrams (Medium)** → `lc_49.py`. 25 min, no hints. Top comment: `# time: Xm, solved alone: yes/no, idea: <one line>`, plus time and space complexity. Follow-up an interviewer would ask: what key would you use if the strings were very long, and what does sorting each string cost vs counting letters?
+- **Learn from (only if stuck after 25 min):** the problem's video on [neetcode.io/practice](https://neetcode.io/practice).
 
-**Only after you've tried:** Fluent Python ch. 9.
+**b) Timer ladder** → `timer.py` + `test_timer.py`. ~35 min.
+- **Part 1:** `@timer` works on any signature (positional, keyword, defaults), returns the result unchanged, keeps `__name__`/`__doc__` via `functools.wraps`, uses `time.perf_counter_ns()`.
+- **Part 2:** still records the time when the function raises, then re-raises the same exception.
+- **Part 3:** `@timer(unit="ms")` with arguments; an unknown unit raises `ValueError` at decoration time, not at call time.
+- Tests: result passthrough, metadata kept, exception path timed and re-raised, bad unit raises. Inject the clock or capture output so tests don't depend on real timing.
+- **Learn from (only after trying):** Fluent Python 2nd ed., ch. 9 *Decorators and Closures* (the sections on closures and parameterized decorators); [`functools.wraps`](https://docs.python.org/3/library/functools.html#functools.wraps).
+- You'll rewrite this cold on Sunday.
 
 ---
 
