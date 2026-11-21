@@ -3,7 +3,7 @@
 **One rule: this is the whole list.** If it isn't on today's line, it isn't today's job. You are not missing anything.
 
 Two phases:
-- **Phase 1 – Sprint to the recruiter call (21–30 Nov).** External recruiter call **Mon 30 Nov** decides whether you're put forward to Jump and Jane Street. Get `feed-recovery` to a state worth talking about (M0–M5), keep LeetCode and Python drills ticking daily, get Shizuku recording. Resume is rewritten in one go the day before the call.
+- **Phase 1 – Sprint (21–30 Nov).** Hard deadline Mon 30 Nov. Get `feed-recovery` to a state worth talking about (M0–M5), keep LeetCode and Python drills ticking daily, get Shizuku recording. Resume is rewritten in one go on Sun 29 Nov.
 - **Phase 2 – Interview-ready (1–19 Dec).** Finish feed-recovery (M6–M10) alongside full interview prep.
 
 Interviews for Python quant dev / data / reliability roles test four things: **code under pressure** (LeetCode), **real Python** (build from a blank file), **the machine** (systems), **talking about your work** (stories, resume, mocks). Every day hits them.
@@ -14,7 +14,8 @@ Interviews for Python quant dev / data / reliability roles test four things: **c
 |---|---|---|
 | LeetCode + Python drills, systems, stories | `python_study/dayN/` | `lc_<n>.py` (time taken in a top comment), drill + `test_*.py`, `systems.md` + experiment, `stories.md` |
 | Showcase project | `runake25/feed-recovery` | Commits that meet the milestone's "Done when" in **`GUIDE.md`** (the spec), with pytest / hypothesis / ruff / mypy green |
-| Resume | `python_study/resume/RESUME.md` | Commits |
+| Resume | Private doc "Resume Draft" | Rewritten on Sun 29 Nov |
+| Tasks, reviews, scores, key dates | Private doc "Coach Log" | Written by the coaches |
 | Data business | `runake25/shizuku` | Commits + recorder running |
 
 Unpushed work doesn't count.
@@ -35,7 +36,7 @@ Unpushed work doesn't count.
 | 15:00 – 17:00 | **Shizuku** (tracked, not scored) |
 | Evening | Off. 21:40 scorecard. |
 
-**Target by the call:** M0–M4 done for certain (book + hash, codecs, publisher/subscriber, checker at 100 subs, loss recovery via retransmit with no snapshot). M5 is the stretch. That's already a strong story: lossy UDP fan-out with retransmit, 100 subscribers, proven consistent by hash, with real numbers. The guide's own pace is 4–5 weeks part-time, so finishing everything by 30 Nov isn't the goal. Shipping clean, measured milestones is.
+**Target by 30 Nov:** M0–M4 done for certain (book + hash, codecs, publisher/subscriber, checker at 100 subs, loss recovery via retransmit with no snapshot). M5 is the stretch. That's already a strong story: lossy UDP fan-out with retransmit, 100 subscribers, proven consistent by hash, with real numbers. The guide's own pace is 4–5 weeks part-time, so finishing everything by 30 Nov isn't the goal. Shipping clean, measured milestones is.
 
 | Day | Date | NN1 Drill (LeetCode + Python) | NN2 feed-recovery | NN3 | Shizuku (15–17) |
 |---|---|---|---|---|---|
@@ -45,11 +46,11 @@ Unpushed work doesn't count.
 | 3 | Tue 24 Nov | 49 Group Anagrams + generator pipeline drill (`chunked`, `sliding_window`, `yield from`). *FP ch. 17* | **M2** publisher + 1 subscriber: control session (TCP Subscribe/Hello) + UDP diff stream, absolute-time tick loop, `config.py` invariant checks. Done when hashes match for a 60 s run. | **Systems 5: TCP, UDP & multicast** (you're wiring both today) | Recorder running 24/7, backoff + jitter on errors. |
 | 4 | Wed 25 Nov | 347 Top K Frequent + context manager drill (class `Timer`, `@contextmanager`, rollback `transaction()`). *FP ch. 18* | **M3** checker + per-tick reports, `hist.py` log-linear histogram, scale to 100 subscribers over ~4 subfleet processes. Done when every subscriber is consistent every tick, baseline histogram saved, unplanned gaps = 0. | Story 3: escalation point for 25+ clients | Gap / health check: alert if no new data for N minutes. |
 | 5 | Thu 26 Nov | 238 Product Except Self + data model drill (`Price` class: `__repr__`, `__eq__`, `__hash__`, ordering; then `@dataclass(slots=True, frozen=True)`). *FP ch. 1* | **M4 part 1**: `sub.py` as a pure `step(state, event) -> (state, actions)` (§7), `pending` buffer, `advance()`; scripted state-machine tests (gap, dup, reorder that fills a hole). | **Systems 1: processes, threads & the GIL** (why the fleet is split into 4 processes) | Leave it running. Check the Bronze data is complete. |
-| 6 | Fri 27 Nov | 128 Longest Consecutive + **LRU cache from scratch** (dict + doubly linked list, O(1)). | **M4 part 2**: dropper (drop / reorder / dup, seeded), publisher ring, TCP retransmit. Done when 1% loss, a 50-burst and reorder-by-one recover with **no snapshot**, plus a test showing a late live datagram filling a hole before its resend lands. Hypothesis property on `step()`. | Story 6: why you left Premialab, why Jump / Jane Street + 90-sec "tell me about yourself" | Write the Silver-layer plan only (schema, dedupe key). Build it in December. |
+| 6 | Fri 27 Nov | 128 Longest Consecutive + **LRU cache from scratch** (dict + doubly linked list, O(1)). | **M4 part 2**: dropper (drop / reorder / dup, seeded), publisher ring, TCP retransmit. Done when 1% loss, a 50-burst and reorder-by-one recover with **no snapshot**, plus a test showing a late live datagram filling a hole before its resend lands. Hypothesis property on `step()`. | Story 6: why you left Premialab, why these firms + 90-sec "tell me about yourself" | Write the Silver-layer plan only (schema, dedupe key). Build it in December. |
 | 7 | Sat 28 Nov | 15 3Sum + `@retry(times, exceptions, backoff)` drill | **M5 (stretch)**: snapshot, epoch, MaxGap; publisher kill/restart without the cache. Either way, today ends with: README (what it is, how to run, out-of-scope list, the numbers you have so far) and GitHub Actions running ruff + mypy + pytest. | Story 5: JPMorgan hackathon | Check it's still recording. |
 | — | **Sun 29 Nov** | **Resume day** (no LeetCode) | | | |
-| | | **Rewrite `resume/RESUME.md` in one go**: every Premialab bullet as built / scale / measured result for a Python quant dev role; feed-recovery as the lead project with the milestones done and your real numbers; option dashboard second. Export a 1-page PDF. Coach reviews it like a Jump recruiter skimming for 30 s, then like the hiring engineer. | | | |
-| 8 | **Mon 30 Nov** | 11 Container With Most Water (light day) | Fix anything the resume review flagged; send the PDF to the recruiter before the call | **Recruiter call prep**: 60-sec pitch, a 2-min feed-recovery walkthrough, why Jump / Jane Street, what roles to target (Python dev / data / reliability), your questions, timeline, compensation range. Mock call in chat. **Then the call.** | — |
+| | | **Rewrite the Resume Draft doc in one go**: every Premialab bullet as built / scale / measured result for a Python quant dev role; feed-recovery as the lead project with the milestones done and your real numbers; option dashboard second. Export a 1-page PDF. Coach reviews it like a top-firm recruiter skimming for 30 s, then like the hiring engineer. | | | |
+| 8 | **Mon 30 Nov** | 11 Container With Most Water (light day) | Fix anything the resume review flagged; send the PDF before the call | **Call prep**: 60-sec pitch, a 2-min feed-recovery walkthrough, why these firms, what roles to target (Python dev / data / reliability), your questions, timeline, compensation range. Mock call in chat. **Then the call.** | — |
 
 ---
 
@@ -116,4 +117,4 @@ Month 2 (set at the retro): trees, heaps, graphs, backtracking, 1-D DP, more moc
 
 ## If you fall behind
 
-Don't skip ahead and don't double up. If a day scores 0–1/3, repeat it. If it scores 2/3, move on and the missed item replaces tomorrow's NN3. In Phase 1, a slipped feed-recovery milestone takes the NN3 slot until it's back on track, because the call date doesn't move. Resume day stays Sun 29 Nov no matter what. The coach handles this. You just open the folder.
+Don't skip ahead and don't double up. If a day scores 0–1/3, repeat it. If it scores 2/3, move on and the missed item replaces tomorrow's NN3. In Phase 1, a slipped feed-recovery milestone takes the NN3 slot until it's back on track, because 30 Nov doesn't move. Resume day stays Sun 29 Nov no matter what. The coach handles this. You just open the folder.

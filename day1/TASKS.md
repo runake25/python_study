@@ -1,6 +1,6 @@
 # Day 1 — Sat 21 Nov 2026
 
-Phase 1 sprint. 9 days to the recruiter call (Mon 30 Nov). Milestone: **M0**.
+Phase 1 sprint. Milestone: **M0**.
 
 You lost the morning, so the order is NN2 first (it's the one with a deadline), then NN1, then NN3. Shizuku only if the three are green.
 
