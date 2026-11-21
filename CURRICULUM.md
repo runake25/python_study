@@ -14,8 +14,8 @@ Interviews for Python quant dev / data / reliability roles test four things: **c
 |---|---|---|
 | LeetCode + Python drills, systems, stories | `python_study/dayN/` | `lc_<n>.py` (time taken in a top comment), drill + `test_*.py`, `systems.md` + experiment, `stories.md` |
 | Showcase project | `runake25/feed-recovery` | Commits that meet the milestone's "Done when" in **`GUIDE.md`** (the spec), with pytest / hypothesis / ruff / mypy green |
-| Resume | Private doc "Resume Draft" | Rewritten on Sun 29 Nov |
-| Tasks, reviews, scores, key dates | Private doc "Coach Log" | Written by the coaches |
+| Resume | Private doc "Resume Draft" | Rewritten on Sun 29 Nov; paste it to the coach for review |
+| Daily tasks and scorecards | Your 07:55 and 21:40 messages | Graded from what is pushed |
 | Data business | `runake25/shizuku` | Commits + recorder running |
 
 Unpushed work doesn't count.
